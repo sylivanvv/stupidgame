@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h5 class="header">Лови меня!</h5>
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+  <script>
+      var leftOfset = 0;
+      var topOfSset = 0;
+      var counter = 0;
+      var interval = 30;
+      function moveHading(){
+      $('.header').offset({left: leftOfset, top: topOfSset});
+      if(leftOfset>=0 && leftOfset< 200 && topOfSset == 0){
+        leftOfset++;  }                    
+        if(leftOfset == 200 && topOfSset < 200){
+            topOfSset++;
+            }
+        if(topOfSset == 200 && leftOfset>0){
+            leftOfset--;}
+        if(leftOfset == 0 && topOfSset > 0){
+            topOfSset--;
+        }
+      }
+      var timerId = setInterval(moveHading, 30);
+      $('.header').click(function(){
+        if(counter == 10){
+            clearInterval(timerId);
+            $('.header').text('Поздравляю, Вы победили!');
+            return;
+        }
+        counter++;
+        clearInterval(timerId);
+        interval -= 5;
+        timerId = setInterval(moveHading, interval);
+      })
+  </script>
+</body>
+</html>
